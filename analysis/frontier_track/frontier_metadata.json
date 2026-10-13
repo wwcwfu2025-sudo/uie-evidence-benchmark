@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-10-13T08:47:31",
+  "manifest": "manifests/frontier_stratified_manifest_public.csv",
+  "selected_images": 287,
+  "paired_images": 80,
+  "datasets": [
+    "ColorCheck7",
+    "LSUI",
+    "OceanDark",
+    "Submerged3D",
+    "TankImage-I",
+    "U45",
+    "UID2021",
+    "UIEB"
+  ],
+  "methods": {
+    "C000": "RAW",
+    "C020": "Fusion_Ancuti_inspired",
+    "D001": "FUnIE-GAN",
+    "D007": "UIEC2-Net",
+    "D044": "TACL",
+    "D046": "Histoformer",
+    "D047": "Spectroformer",
+    "D048": "AutoEnhancer",
+    "F001": "W2WDiff",
+    "F002": "HRMamba"
+  },
+  "bootstrap_repeats": 2000,
+  "bootstrap_unit": "image; one observation per selected source image",
+  "frontier_files": [
+    "raw_results/f001_per_image.csv",
+    "raw_results/f002_per_image.csv"
+  ],
+  "interpretation_limit": "Official checkpoints are evaluated as released-model transfer; this is not standardized retraining."
+}

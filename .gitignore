@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local data, model weights, and generated outputs are not distributed.
+datasets/
+data/
+checkpoints/
+weights/
+outputs/
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# Local environments and credentials.
+.env
+.env.*
+.venv/
+venv/

@@ -1,0 +1,10 @@
+{
+  "built_at": "2026-10-13T12:57:40",
+  "source_workspace": "local private workspace; absolute paths removed",
+  "third_party_data_or_weights_included": false,
+  "main_images": 1253,
+  "paired_images": 800,
+  "frontier_images": 287,
+  "main_items_including_raw": 41,
+  "privacy_audit": "passed: no Windows absolute paths in public text files"
+}

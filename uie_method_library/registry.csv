@@ -1,0 +1,72 @@
+﻿method_id,name,family,is_deep,adapter,authority,status,repository,weights,note
+C000,RAW,control,false,classical:raw,control,ready_verified,,,No enhancement
+C001,GrayWorld,white_balance,false,classical:gray_world,standardized_reimplementation,ready_verified,,,Unified baseline
+C002,MaxRGB,white_balance,false,classical:max_rgb,standardized_reimplementation,ready_verified,,,Unified baseline
+C003,ShadesOfGray-p6,white_balance,false,classical:shades_of_gray,standardized_reimplementation,ready_verified,,,Unified baseline
+C004,GrayEdge-p6,white_balance,false,classical:gray_edge,standardized_reimplementation,ready_verified,,,Unified baseline
+C005,WhitePatch-p99,white_balance,false,classical:white_patch,standardized_reimplementation,ready_verified,,,Unified baseline
+C006,RGB-HE,histogram,false,classical:rgb_he,standardized_reimplementation,ready_verified,,,Unified baseline
+C007,YCrCb-HE,histogram,false,classical:ycrcb_he,standardized_reimplementation,ready_verified,,,Unified baseline
+C008,LAB-CLAHE,histogram,false,classical:lab_clahe,standardized_reimplementation,ready_verified,,,Unified baseline
+C009,HSV-CLAHE,histogram,false,classical:hsv_clahe,standardized_reimplementation,ready_verified,,,Unified baseline
+C010,Gamma-0.7,tone_mapping,false,classical:gamma07,standardized_reimplementation,ready_verified,,,Unified baseline
+C011,AdaptiveGamma,tone_mapping,false,classical:adaptive_gamma,standardized_reimplementation,ready_verified,,,Unified baseline
+C012,UnsharpMask,detail,false,classical:unsharp,standardized_reimplementation,ready_verified,,,Unified baseline
+C013,Homomorphic,illumination,false,classical:homomorphic,standardized_reimplementation,ready_verified,,,Unified baseline
+C014,SSR,retinex,false,classical:ssr,standardized_reimplementation,ready_verified,,,Unified baseline
+C015,MSR,retinex,false,classical:msr,standardized_reimplementation,ready_verified,,,Unified baseline
+C016,MSRCR,retinex,false,classical:msrcr,standardized_reimplementation,ready_verified,,,Unified baseline
+C017,DCP,physical_prior,false,classical:dcp,standardized_reimplementation,ready_verified,,,Unified baseline
+C018,UDCP,physical_prior,false,classical:udcp,standardized_reimplementation,ready_verified,,,Unified baseline
+C019,RCP,physical_prior,false,classical:rcp,standardized_reimplementation,ready_verified,,,Unified baseline
+C020,Fusion-Ancuti-inspired,fusion,false,classical:fusion_inspired,mechanism_inspired,ready_verified,,,Not original multiscale author code
+D001,FUnIE-GAN,gan,true,funiegan,official_repository_sample_weight,ready_verified,third_party/D001,weights/D001/funie_generator.pth,PyTorch sample model; repository says TF-Keras is paper reproduction path
+D002,P2CNet,color_compensation,true,p2cnet,official_repository_weight,ready_verified,third_party/D002,weights/D002/P2CNet.pth,Official color-compensation network; official TestDataset uses 256x256 input; local audited Lab compatibility layer; four-domain smoke passed
+D003,UVE-Net-Small,video_enhancement,true,uvenet,official_repository_weight,ready_verified_single_frame,third_party/D003,weights/D003/samll_net_g.pth,Official small model; single-image library path uses one-frame sequence T=1; four-domain smoke passed; video protocol still pending
+D004,UVE-Net-Large,video_enhancement,true,uvenet,official_repository_weight,ready_verified_single_frame,third_party/D004,weights/D004/large_net_g.pth,Official large model; single-image library path uses one-frame sequence T=1; four-domain smoke passed; video protocol still pending
+D005,Water-Net,supervised_fusion,true,uwtoolbox,author_toolbox_conversion,ready_verified_portable_preprocess,third_party/D005,weights/D005/WaterNet_gdrive.bin,Official-author-linked converted PyTorch checkpoint; author preprocessing ported with OpenCV Lab-CLAHE compatibility; four-domain smoke passed
+D006,UWCNN,supervised_cnn,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D006,weights/D006/UWCNN_type1_gdrive.bin,Official-author-linked converted PyTorch type-1 checkpoint; four-domain smoke passed
+D007,UIEC2-Net,two_color_space_cnn,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D007,weights/D007/UIEC2Net_gdrive.bin,Official-author-linked model-zoo checkpoint; released forward pass requires CUDA; four-domain smoke passed
+D008,UW-CycleGAN,model_driven_gan,true,external_pending,official_repository,weights_unverified,third_party/D008,,Enhancement generator checkpoint location requires verification
+D009,U-shape Transformer,transformer,true,ushape_transformer,official_repository,ready_verified,third_party/D009,weights/D009/generator_795.pth,Official Google Drive generator_795 checkpoint extracted from author archive; four-domain smoke passed
+D010,UDnet,unsupervised,true,udnet,official_repository,ready_verified,third_party/D010,weights/D010/pretrained_gdrive.bin,Official Google Drive checkpoint; inference adapter loads decoder subset and omits training-only VGG loss; four-domain smoke passed
+D011,LUIEO,joint_enhancement_detection,true,luieo,official_repository,ready_verified_geometry_fix,third_party/D011,weights/D011/checkpoint648.pt,Official Google Drive joint checkpoint; adapter omits confirmed extra final hflip in released predictor to preserve geometry; four-domain smoke passed
+D012,SeaDiff,diffusion,true,external_pending,official_repository,weights_missing,third_party/D012,,No local checkpoint
+D013,PA-Diff,diffusion,true,external_pending,official_repository,weights_missing,third_party/D013,,No local checkpoint
+D014,WF-Diff,diffusion,true,external_pending,official_repository,weights_missing,third_party/D014,,Baidu checkpoints listed; not downloaded
+D015,TCDM-UIE,diffusion,true,external_pending,official_repository,weights_missing,third_party/D015,,No local checkpoint
+D016,RMUIE,retinex_mamba,true,external_pending,official_repository,weights_missing,third_party/D016,,No local checkpoint
+D017,CDFIE-Net,cross_domain_network,true,external_pending,official_repository,weights_missing,third_party/D017,,No local checkpoint
+D018,MARINE-Net,deep_network,true,external_pending,official_repository,weights_missing,third_party/D018,,No local checkpoint
+D019,MSEA,multiscale_attention,true,external_pending,official_repository,weights_missing,third_party/D019,,No local checkpoint
+D020,PDRMRV,deep_variational,true,external_pending,official_repository,weights_missing,third_party/D020,,No local checkpoint
+D021,FUGN,graph_network,true,external_pending,official_repository,weights_missing,third_party/D021,,No local checkpoint
+D022,IA2U-UIE,task_adaptive,true,external_pending,official_repository,enhancement_weights_missing,third_party/D022,,Only classifier backbone found locally
+D023,WaterMono-Enhancer,physics_depth,true,external_pending,official_repository,weights_missing,third_party/D023,,Enhancement and depth components require separation
+D024,SGUIE-Net,semantic_guided,true,sguie,official_repository,ready_verified_adapted_semantic_input,third_party/D024,weights/D024/latest_net_G.pth,Official code and checkpoint; arbitrary-image adapter uses explicitly labeled single full-frame semantic region fallback; not equivalent to semantic-mask protocol
+D025,PGMamba,physics_guided_mamba,true,external_pending,candidate_repository,repository_missing,https://github.com/ZijunTan/PMGMamba,,Candidate requires verification
+D026,HPMENet,attention_network,true,external_pending,candidate_repository,repository_missing,https://github.com/Smm-ccd/HPMENet,,Candidate requires verification
+D027,MJPNet,deep_network,true,external_pending,candidate_repository,repository_missing,https://github.com/JunyuFan/MJPNet,,Candidate requires verification
+D028,UVZ,depth_guided,true,external_pending,candidate_repository,repository_missing,https://github.com/WindySprint/UVZ,,Candidate requires verification
+D029,SSD-UIE,semi_supervised,true,external_pending,candidate_repository,repository_missing,https://github.com/RockWenJJ/SSD-UIE,,Candidate requires verification
+D030,CPLDP,prompt_learning,true,external_pending,candidate_repository,repository_missing,https://github.com/yg76cv/CPLDP,,Candidate requires verification
+D031,DICAM,inception_attention_cnn,true,dicam,official_repository,ready_verified,third_party/D031,weights/D031/DICAM_60.pt,Official author repository includes UIEB pretrained checkpoint; four-domain smoke passed
+D032,SS-UIE,spatial_spectral_state_space,true,pending,official_repository,environment_blocked,third_party/D032,weights/D032/SS_UIE.pth,Official checkpoint downloaded; released CUDA mamba-ssm environment unavailable on current Windows PyTorch runtime
+D033,CCL-Net,cascaded_contrastive,true,pending,official_repository,repository_download_failed,,,Official repository verified; clone and pretrained package acquisition pending network retry
+D034,Ucolor,physics_guided_multicolor,true,pending,official_repository,legacy_environment_blocked,third_party/D034,,Official TensorFlow 1.6 package download failed; legacy runtime and transmission-map input required
+D035,Shallow-UWNet,compressed_cnn,true,shallow_uwnet,official_repository,ready_verified,third_party/D035,weights/D035/model.ckpt,Official author Google Drive full-model checkpoint; four-domain smoke passed
+D036,Deep WaveNet,wavelength_attention_cnn,true,deep_wavenet,official_repository,ready_verified,third_party/D036,weights/D036/netG_295.pt,Official author repository includes UIEB pretrained checkpoint; four-domain smoke passed
+D037,UWCNN-Type3,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D037,weights/D037/UWCNN_type3_gdrive.bin,Official-author-linked converted model specialized for water type 3; same architecture as UWCNN; four-domain smoke passed
+D038,UWCNN-Type5,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D038,weights/D038/UWCNN_type5_gdrive.bin,Official-author-linked converted model specialized for water type 5; same architecture as UWCNN; four-domain smoke passed
+D039,UWCNN-Type7,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D039,weights/D039/UWCNN_type7_gdrive.bin,Official-author-linked converted model specialized for water type 7; same architecture as UWCNN; four-domain smoke passed
+D040,UWCNN-Type9,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D040,weights/D040/UWCNN_type9_gdrive.bin,Official-author-linked converted model specialized for water type 9; same architecture as UWCNN; four-domain smoke passed
+D041,UWCNN-TypeI,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D041,weights/D041/UWCNN_typeI_gdrive.bin,Official-author-linked converted model specialized for Jerlov type I; same architecture as UWCNN; four-domain smoke passed
+D042,UWCNN-TypeII,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D042,weights/D042/UWCNN_typeII_gdrive.bin,Official-author-linked converted model specialized for Jerlov type II; same architecture as UWCNN; four-domain smoke passed
+D043,UWCNN-TypeIII,supervised_cnn_variant,true,uwtoolbox,author_toolbox_conversion,ready_verified,third_party/D043,weights/D043/UWCNN_typeIII_gdrive.bin,Official-author-linked converted model specialized for Jerlov type III; same architecture as UWCNN; four-domain smoke passed
+D044,TACL,twin_adversarial_contrastive,true,tacl,official_repository,ready_verified,third_party/D044,weights/D044/latest_net_G_A.pth,Official author repository and Google Drive pretrained package; enhancement direction uses released fake_B / G_A path; four-domain smoke passed
+D045,PUIE-Net,probabilistic_uncertainty,true,puienet,official_repository,ready_verified_mc20,third_party/D045,weights/D045/puie.pth,Official author repository and Google Drive checkpoint; MC adapter averages 20 samples as released Test_MC.py; four-domain smoke passed
+D046,Histoformer,histogram_transformer_gan,true,histoformer,official_repository,ready_verified_geometry_pad,third_party/D046,weights/D046/Histoformer-PQR_288_modifyloss.pth,Official author repository and two-stage Google Drive checkpoints; released refinement Generator requires CUDA; four-domain smoke passed
+D047,Spectroformer,multidomain_transformer,true,spectroformer,official_repository,ready_verified,third_party/D047,weights/D047/best.pth,Official author repository includes pickled full-model checkpoint used by released test.py; four-domain smoke and visual geometry checks passed
+D048,AutoEnhancer,nas_transformer_unet,true,autoenhancer,official_repository,ready_verified_dead_import_shim,third_party/D048,weights/D048/200000.pth,Official author repository and Google Drive optimal-network checkpoint; released architecture selection retained; unused ViT import shim does not alter the computation graph; four-domain smoke passed
+D049,TCTL-Net,color_transfer_attention,true,tctlnet,official_repository,ready_verified_dead_import_shim,third_party/D049,weights/D049/tctl_pretrained_gdrive.bin,Official author repository and Google Drive trained model; released 256x256 LAB color-transfer path; unused THOP import shim does not alter the computation graph; four-domain smoke passed after compatibility retry
+D050,CLUIE-Net,comparative_learning,true,cluienet,official_repository,ready_verified_geometry_pad,third_party/D050,weights/D050/fE_latest.pth,Official author repository and Google Drive encoder/decoder checkpoints; reflect padding to a multiple of 16 preserves input geometry; four-domain smoke passed

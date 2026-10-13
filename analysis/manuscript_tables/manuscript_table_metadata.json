@@ -1,0 +1,22 @@
+{
+  "table4": {
+    "items_including_raw": 41,
+    "enhancement_algorithms": 40,
+    "paired_images": 800,
+    "all_images": 1253,
+    "datasets": 8,
+    "aggregation": "Equal-weight mean of dataset means; runtime is pooled per-image mean."
+  },
+  "table6": {
+    "representative_methods": 12,
+    "bootstrap_repeats": 2000,
+    "bootstrap_seed": 20261012,
+    "borda_definition": "Within each dataset, average descending UCIQE and UIQM ranks over all 41 items; then summarize across eight datasets.",
+    "kendall_w_no_tie_correction": 0.5375639699477351,
+    "pairwise_dataset_spearman_like_pearson_on_rank_vectors_median": 0.8163680848827263,
+    "pairwise_dataset_rank_correlation_range": [
+      0.49606124917897176,
+      0.9797355001742075
+    ]
+  }
+}

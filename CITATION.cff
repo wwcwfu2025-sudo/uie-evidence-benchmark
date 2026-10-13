@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite the accompanying article."
+title: "UIE Evidence Benchmark"
+type: dataset
+version: 1.0.0
+date-released: 2026-10-13
+authors:
+  - family-names: Wang
+    given-names: Wencheng
+  - family-names: Wu
+    given-names: Xiaojin
+  - family-names: Li
+    given-names: Lun
+  - family-names: Chen
+    given-names: Zhenxue
+  - family-names: Yuan
+    given-names: Xiaohui
+repository-code: "https://github.com/wwcwfu2025-sudo/uie-evidence-benchmark"
+abstract: >-
+  Reproducibility materials for the survey Underwater Image Enhancement:
+  Imaging Models, Learning Paradigms, Benchmarks, and Evaluation. The repository
+  contains manifests, method provenance, per-image results, statistical analyses,
+  and reproduction scripts. Third-party datasets and model weights are excluded.

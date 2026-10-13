@@ -1,0 +1,7 @@
+﻿level,full_reference_metric,no_reference_metric,n_method_dataset_pairs,spearman_rho,p_value
+method_by_dataset_mean,psnr,uciqe,82,-0.011569312480273397,0.9178362450935214
+method_by_dataset_mean,psnr,uiqm,82,0.16770605457058588,0.13206277217907628
+method_by_dataset_mean,ssim,uciqe,82,0.05886962484082672,0.5993335101184585
+method_by_dataset_mean,ssim,uiqm,82,0.3398635191171189,0.0017847378520477173
+method_by_dataset_mean,delta_e2000,uciqe,82,0.04469912169001209,0.6900750595085585
+method_by_dataset_mean,delta_e2000,uiqm,82,-0.14162884600733558,0.2043613102404296
