@@ -1,0 +1,16 @@
+{
+  "created_at": "2026-10-13T08:32:58",
+  "method_id": "F002",
+  "method": "HRMamba",
+  "family": "state_space",
+  "manifest": "manifests/frontier_stratified_manifest_public.csv",
+  "expected_images": 287,
+  "successful_images": 287,
+  "missing_or_failed_images": 0,
+  "runtime_ms_per_image_from_log": 1640.2573426573426,
+  "runtime_note": "Pure-PyTorch selective_scan_ref on Windows; diagnostic only and excluded from deployment latency ranking.",
+  "sampling_steps": 0,
+  "checkpoint_sha256": "5d1fdc7110f91b4389b0dec9eadb4d413e6f5796aef87fbc1e8b12c61d2f578c",
+  "metric_code": "scripts/benchmark_20_methods_8_datasets.py",
+  "official_repository": "https://github.com/YeFan-web/HRMamba"
+}

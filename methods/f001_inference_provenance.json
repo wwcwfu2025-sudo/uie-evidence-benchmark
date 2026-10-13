@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-10-13T08:47:23",
+  "method_id": "F001",
+  "method": "W2WDiff",
+  "family": "diffusion",
+  "manifest": "manifests/frontier_stratified_manifest_public.csv",
+  "expected_images": 287,
+  "successful_images": 287,
+  "missing_or_failed_images": 0,
+  "runtime_ms_per_image_from_log": 2924.0,
+  "runtime_note": "Official W2WDiff inference; 15 diffusion steps; batch size 1.",
+  "sampling_steps": 15,
+  "checkpoint_sha256": "021d7934d8adb5b0b17c4f1d754992e16bc61275fa09243e003d1a91051d3890",
+  "auxiliary_checkpoint_sha256": "f2d38350aa618f3de6405319830fdf670d83c5a355f11759df3f7806295ff3be",
+  "metric_code": "scripts/benchmark_20_methods_8_datasets.py",
+  "official_repository": "https://github.com/c-pupil/W2WDiff"
+}

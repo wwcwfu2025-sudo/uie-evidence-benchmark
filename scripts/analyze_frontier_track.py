@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -9,11 +10,12 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "manifests" / "frontier_staged_manifest.csv"
+MANIFEST = ROOT / "manifests" / "frontier_stratified_manifest_public.csv"
 CLASSICAL = ROOT / "raw_results" / "expanded_classical_per_image.csv"
-DEEP = ROOT / "raw_results" / "deep" / "72_method_library_deep28_8datasets_per_image.csv"
-FRONTIER = ROOT / "raw_results" / "frontier"
-OUT = ROOT / "analysis" / "frontier_track"
+DEEP = ROOT / "raw_results" / "72_method_library_deep28_8datasets_per_image.csv"
+FRONTIER = ROOT / "raw_results"
+# UIE_ANALYSIS_OUTPUT denotes the shared analysis root, not the track directory.
+OUT = Path(os.environ.get("UIE_ANALYSIS_OUTPUT", ROOT / "analysis")).expanduser().resolve() / "frontier_track"
 
 # RAW, one standardized traditional baseline, and six released deep models.
 # F001/F002 are appended when their evaluations are complete.
@@ -69,6 +71,9 @@ def bootstrap_mean_ci(values: np.ndarray, *, seed: int, repeats: int = 2000) -> 
 
 
 def main() -> None:
+    for required in (MANIFEST, CLASSICAL, DEEP, FRONTIER / "f001_per_image.csv", FRONTIER / "f002_per_image.csv"):
+        if not required.is_file():
+            raise FileNotFoundError(f"Required public-package input is missing: {required}")
     manifest = read_csv(MANIFEST)
     selected = {(row["dataset"], row["sample_key"]) for row in manifest}
     paired = {(row["dataset"], row["sample_key"]) for row in manifest if row["has_reference"] == "1"}
@@ -190,14 +195,14 @@ def main() -> None:
     write_csv(OUT / "frontier_combined_per_image.csv", rows)
     metadata = {
         "created_at": datetime.now().isoformat(timespec="seconds"),
-        "manifest": str(MANIFEST),
+        "manifest": MANIFEST.relative_to(ROOT).as_posix(),
         "selected_images": expected,
         "paired_images": len(paired),
         "datasets": datasets,
         "methods": {method_id: items[0]["method"] for method_id, items in sorted(by_method.items())},
         "bootstrap_repeats": 2000,
         "bootstrap_unit": "image; one observation per selected source image",
-        "frontier_files": [str(path) for path in frontier_files],
+        "frontier_files": [path.relative_to(ROOT).as_posix() for path in frontier_files],
         "interpretation_limit": "Official checkpoints are evaluated as released-model transfer; this is not standardized retraining.",
     }
     (OUT / "frontier_metadata.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")

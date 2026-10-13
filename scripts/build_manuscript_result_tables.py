@@ -2,15 +2,17 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from pathlib import Path
 
 import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ANALYSIS = ROOT / "analysis"
+# With an override, run analyze_expanded_benchmark.py first using the same root.
+ANALYSIS = Path(os.environ.get("UIE_ANALYSIS_OUTPUT", ROOT / "analysis")).expanduser().resolve()
 CLASSICAL = ROOT / "raw_results" / "expanded_classical_per_image.csv"
-DEEP = ROOT / "raw_results" / "deep" / "72_method_library_deep28_8datasets_per_image.csv"
+DEEP = ROOT / "raw_results" / "72_method_library_deep28_8datasets_per_image.csv"
 OVERALL = ANALYSIS / "expanded_overall_summary.csv"
 BOOTSTRAP = ANALYSIS / "expanded_paired_bootstrap_vs_raw.csv"
 OUT = ANALYSIS / "manuscript_tables"

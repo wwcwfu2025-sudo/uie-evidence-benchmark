@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -12,12 +13,13 @@ from scipy.stats import rankdata, spearmanr
 
 
 REVISION_ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = REVISION_ROOT / "manifests" / "expanded_quality_manifest.csv"
+MANIFEST = REVISION_ROOT / "manifests" / "expanded_quality_manifest_public.csv"
 CLASSICAL_FINAL = REVISION_ROOT / "raw_results" / "expanded_classical_per_image.csv"
 CLASSICAL_STATE = REVISION_ROOT / "raw_results" / "classical_state"
-DEEP_FINAL = REVISION_ROOT / "raw_results" / "deep" / "72_method_library_deep28_8datasets_per_image.csv"
+DEEP_FINAL = REVISION_ROOT / "raw_results" / "72_method_library_deep28_8datasets_per_image.csv"
 DEEP_STATE = REVISION_ROOT / "benchmark_runs" / "expanded_deep" / "state"
-OUT = REVISION_ROOT / "analysis"
+# Override the analysis root to verify the archive without overwriting it.
+OUT = Path(os.environ.get("UIE_ANALYSIS_OUTPUT", REVISION_ROOT / "analysis")).expanduser().resolve()
 
 METRICS = {
     "psnr": {"higher": True, "scope": "paired"},
@@ -318,6 +320,9 @@ def metric_alignment(rows: list[dict[str, str]]) -> list[dict[str, object]]:
 
 
 def main() -> None:
+    for required in (MANIFEST, CLASSICAL_FINAL, DEEP_FINAL):
+        if not required.is_file():
+            raise FileNotFoundError(f"Required public-package input is missing: {required}")
     rows = successful_rows()
     methods = sorted({row["method_id"] for row in rows})
     datasets = sorted({row["dataset"] for row in rows})
@@ -336,7 +341,7 @@ def main() -> None:
         "dataset_count": len(datasets),
         "datasets": datasets,
         "manifest_images": len(read_csv(MANIFEST)),
-        "paired_reference_images": sum(1 for row in read_csv(MANIFEST) if row["reference"]),
+        "paired_reference_images": sum(1 for row in read_csv(MANIFEST) if row["has_reference"] == "1"),
         "bootstrap": (
             "Paired against RAW; cluster resampling within each dataset; dataset means are then "
             "equally weighted. Confidence intervals are percentile 95% intervals."

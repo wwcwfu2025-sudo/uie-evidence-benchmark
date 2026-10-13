@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -9,13 +10,15 @@ import numpy as np
 from scipy.stats import rankdata
 
 
-WORKSPACE = Path(__file__).resolve().parents[2]
-REVISION_ROOT = Path(__file__).resolve().parents[1]
-TRASHCAN_SUMMARY = WORKSPACE / "benchmark_assets" / "90_trashcan_detection_metrics.csv"
-TRASHCAN_BOOTSTRAP = WORKSPACE / "benchmark_assets" / "101_trashcan_detection_paired_bootstrap.csv"
-URPC_SUMMARY = REVISION_ROOT / "raw_results" / "detection_urpc2020" / "urpc2020_yolov12n_summary.csv"
-URPC_BOOTSTRAP = REVISION_ROOT / "raw_results" / "detection_urpc2020" / "urpc2020_yolov12n_paired_bootstrap.csv"
-OUT = REVISION_ROOT / "analysis"
+ROOT = Path(__file__).resolve().parents[1]
+TRASHCAN_SUMMARY = ROOT / "raw_results" / "trashcan_detection_metrics.csv"
+# The combined file retains the original 2,000-resample IMAGE-level intervals.
+# Video-cluster intervals are deliberately kept in a separate file and script.
+TRASHCAN_BOOTSTRAP = ROOT / "analysis" / "detection" / "trashcan_detection_paired_bootstrap.csv"
+TRASHCAN_CLUSTER_BOOTSTRAP = ROOT / "analysis" / "detection" / "trashcan_video_cluster_bootstrap.csv"
+URPC_SUMMARY = ROOT / "raw_results" / "urpc2020_yolov12n_summary.csv"
+URPC_BOOTSTRAP = ROOT / "raw_results" / "urpc2020_yolov12n_paired_bootstrap.csv"
+OUT = Path(os.environ.get("UIE_ANALYSIS_OUTPUT", str(ROOT / "analysis"))).expanduser().resolve()
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -78,6 +81,8 @@ def main() -> None:
         ("URPC2020 test", "IEUOD YOLOv12n", URPC_BOOTSTRAP),
     ):
         for row in read_csv(path):
+            if int(row["bootstrap_replicates"]) != 2000:
+                raise ValueError(f"Expected 2,000 image-level bootstrap resamples in {path.name}")
             bootstrap_rows.append(
                 {
                     "dataset": dataset,
@@ -129,6 +134,22 @@ def main() -> None:
             "URPC2020 test + IEUOD YOLOv12n",
         ],
         "methods_including_raw": len(method_ids),
+        "bootstrap_protocols": {
+            "two_detection_benchmarks_paired_f1_ci.csv": {
+                "sampling_unit": "image",
+                "replicates": 2000,
+                "estimand": "mean paired per-image F1 change versus RAW",
+                "datasets": ["TrashCan validation", "URPC2020 test"],
+            },
+            "detection/trashcan_video_cluster_bootstrap.csv": {
+                "sampling_unit": "video cluster",
+                "replicates": 5000,
+                "seed": 20260722,
+                "source": TRASHCAN_CLUSTER_BOOTSTRAP.relative_to(ROOT).as_posix(),
+                "recompute_script": "scripts/recompute_trashcan_cluster_bootstrap.py",
+                "interpretation": "Separate TrashCan analysis; not substituted into the image-level combined file.",
+            },
+        },
         "interpretation": (
             "Cross-benchmark consistency is descriptive because there are only two dataset-detector pairs; "
             "paired within-benchmark uncertainty is reported separately."
